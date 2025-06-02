@@ -4,6 +4,7 @@ npm-debug.log*
 package-lock.json
 
 # production
+dist
 
 # misc
 .DS_Store
