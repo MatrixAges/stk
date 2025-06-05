@@ -416,14 +416,17 @@ export default class Index<T = {}> {
 	}
 
 	private getherItems(tree: Tree<T>) {
-		return tree.reduce((total, item) => {
-			total.push(item)
+		return tree.reduce(
+			(total, item) => {
+				total.push(item)
 
-			if (item?.children?.length) {
-				total.push(...this.getherItems(item.children))
-			}
+				if (item?.children?.length) {
+					total.push(...this.getherItems(item.children))
+				}
 
-			return total
-		}, [] as Tree<T>)
+				return total
+			},
+			[] as Tree<T>
+		)
 	}
 }
