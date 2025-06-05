@@ -1,6 +1,6 @@
-import { rslib } from '../../config'
-
 import { deepmerge } from 'deepmerge-ts'
+
+import { rslib } from '../../config'
 
 import type { RslibConfig } from '@rslib/core'
 
