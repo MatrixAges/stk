@@ -1,4 +1,5 @@
-import { find, flatMap, flatten, get, initial, last, omit, reduceRight } from 'lodash-es'
+import { flatten, initial, last, omit } from 'es-toolkit'
+import { find, flatMap, get, reduceRight } from 'es-toolkit/compat'
 import { makeAutoObservable, toJS } from 'mobx'
 
 export type RawNode<T = {}> = {
@@ -93,7 +94,7 @@ export default class Index<T = {}> {
 
 			if (!target) return
 
-			Object.keys(omit(data, 'id')).forEach((key: keyof typeof data) => {
+			Object.keys(omit(data, ['id'])).forEach((key: keyof typeof data) => {
 				target[key] = data[key]
 			})
 
@@ -410,7 +411,7 @@ export default class Index<T = {}> {
 	}
 
 	private getIndexes(indexes: Array<number>) {
-		return flatMap(indexes, (value, index) => {
+		return flatMap(indexes, (value, index: number) => {
 			return index < indexes.length - 1 ? [value, 'children'] : [value]
 		})
 	}

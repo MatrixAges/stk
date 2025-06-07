@@ -1,5 +1,4 @@
 import { deepEqual } from 'fast-equals'
-import { isArray } from 'lodash-es'
 
 export const getComputedStyleValue = (el: Element, property: string) => {
 	return Number(getComputedStyle(el).getPropertyValue(property).replace('px', ''))
@@ -15,7 +14,7 @@ export const getExsitValues = (v: any) => {
 			delete v[key]
 		}
 
-		if (isArray(v[key])) {
+		if (Array.isArray(v[key])) {
 			if (!v[key].length) {
 				delete v[key]
 			}

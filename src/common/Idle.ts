@@ -1,4 +1,4 @@
-import { debounce } from 'lodash-es'
+import { debounce } from 'es-toolkit/compat'
 import { makeAutoObservable } from 'mobx'
 
 import { useInstanceWatch } from '@/mobx'

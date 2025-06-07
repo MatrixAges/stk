@@ -1,5 +1,5 @@
+import { get } from 'es-toolkit/compat'
 import { deepEqual } from 'fast-equals'
-import { get } from 'lodash-es'
 import { observe, reaction, toJS } from 'mobx'
 
 import type { IValueDidChange } from 'mobx'
