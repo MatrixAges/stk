@@ -18,6 +18,8 @@ export function on(this: any, target: object, key: string, fn: EffectFn) {
 	} else {
 		effectMap.set(key, [effect] as Effect[])
 	}
+
+	return () => off(target, key, fn)
 }
 
 export function once(this: any, target: object, key: string, fn: EffectFn) {

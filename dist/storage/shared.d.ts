@@ -10,6 +10,11 @@ export interface StorageLike {
     removeItem(key: string): void;
     length: number;
 }
+export interface Storage extends StorageLike {
+    on: (key: string, callback: EffectFn) => () => void;
+    off: (key: string, callback: EffectFn) => void;
+    once: (key: string, callback: EffectFn) => void;
+}
 export type StorageValue = string | object | null;
 export interface TargetObject {
     type: string;

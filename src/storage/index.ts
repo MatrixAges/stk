@@ -39,5 +39,5 @@ if (!is_server) {
 export { setPrefix } from './shared'
 export { encode, decode }
 
-export const local: any = createProxyStorage(_local)
-export const session: any = createProxyStorage(_session)
+export const local = createProxyStorage(_local)
+export const session = createProxyStorage(_session)
