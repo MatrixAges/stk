@@ -1,6 +1,6 @@
 import { getExpires, removeExpires, setExpires } from '@/storage/extends/expires'
 import { emit, off, on, once } from '@/storage/extends/watch'
-import { activeEffect, createExpiredFunc, prefix, proxyMap, shouldTrack, Storage, StorageLike } from '@/storage/shared'
+import { activeEffect, createExpiredFunc, proxyMap, shouldTrack, Storage, StorageLike } from '@/storage/shared'
 import { hasChanged, hasOwn, propertyIsInPrototype } from '@/storage/utils'
 
 import { decode, encode } from './transform'
@@ -66,7 +66,7 @@ function get(target: object, property: string, receiver: any) {
 		return undefined
 	}
 
-	const key = `${prefix}${property}`
+	const key = `${window.__storage_prefix__ || ''}${property}`
 	const value = target[key] || target[property]
 
 	if (!value) return value
@@ -75,7 +75,7 @@ function get(target: object, property: string, receiver: any) {
 }
 
 function set(target: object, property: string, value: any, receiver: any) {
-	const key = `${prefix}${property}`
+	const key = `${window.__storage_prefix__ || ''}${property}`
 	let oldValue = decode(target[key], createExpiredFunc(target, key))
 	oldValue = proxyMap.get(oldValue) || oldValue
 	const encodeValue = encode(value)
@@ -88,11 +88,14 @@ function set(target: object, property: string, value: any, receiver: any) {
 
 // only prefixed properties are accepted in the instance
 function has(target: object, property: string): boolean {
-	return target.hasOwnProperty(`${prefix}${property}`) || propertyIsInPrototype(target, property)
+	return (
+		target.hasOwnProperty(`${window.__storage_prefix__ || ''}${property}`) ||
+		propertyIsInPrototype(target, property)
+	)
 }
 
 function deleteProperty(target: object, property: string) {
-	const key = `${prefix}${property}`
+	const key = `${window.__storage_prefix__ || ''}${property}`
 	const hadKey = hasOwn(target, key)
 	let oldValue = decode(target[key], createExpiredFunc(target, key))
 	oldValue = proxyMap.get(oldValue) || oldValue

@@ -1,7 +1,7 @@
-export let prefix = ''
 export function setPrefix(str: string) {
-	prefix = `${str}:`
+	window.__storage_prefix__ = `${str}:`
 }
+
 export const proxyMap = new WeakMap<object, object>()
 
 export interface StorageLike {

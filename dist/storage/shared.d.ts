@@ -1,4 +1,3 @@
-export declare let prefix: string;
 export declare function setPrefix(str: string): void;
 export declare const proxyMap: WeakMap<object, object>;
 export interface StorageLike {

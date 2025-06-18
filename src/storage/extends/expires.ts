@@ -1,5 +1,5 @@
 import { encode } from '@/storage/proxy/transform'
-import { ExpiresType, prefix, proxyMap } from '@/storage/shared'
+import { ExpiresType, proxyMap } from '@/storage/shared'
 import { isDate, isObject, isString, transformJSON } from '@/storage/utils'
 
 export function setExpires(target: object, property: string, value: ExpiresType, receiver: any) {
@@ -22,12 +22,12 @@ export function setExpires(target: object, property: string, value: ExpiresType,
 	}
 	data = proxyMap.get(data) || data
 
-	target[`${prefix}${property}`] = encode(data, '' + time)
+	target[`${window.__storage_prefix__ || ''}${property}`] = encode(data, '' + time)
 	return new Date(time)
 }
 
 export function getExpires(target: object, property: string) {
-	const key = `${prefix}${property}`
+	const key = `${window.__storage_prefix__ || ''}${property}`
 	if (!target[key]) {
 		return undefined
 	}
@@ -45,7 +45,7 @@ export function removeExpires(target: object, property: string, receiver: any) {
 	}
 	data = proxyMap.get(data) || data
 
-	target[`${prefix}${property}`] = encode(data)
+	target[`${window.__storage_prefix__ || ''}${property}`] = encode(data)
 
 	return undefined
 }

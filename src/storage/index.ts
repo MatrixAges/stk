@@ -1,7 +1,7 @@
 import { emit } from './extends/watch'
 import { createProxyStorage } from './proxy/storage'
 import { decode, encode } from './proxy/transform'
-import { createExpiredFunc, prefix, proxyMap, StorageValue } from './shared'
+import { createExpiredFunc, proxyMap, StorageValue } from './shared'
 import { isObject } from './utils'
 
 const is_server = typeof window === 'undefined'
@@ -11,7 +11,7 @@ const _session = typeof sessionStorage !== 'undefined' ? sessionStorage : undefi
 
 if (!is_server) {
 	window.addEventListener('storage', (e: StorageEvent) => {
-		if (e.key && e.key.startsWith(prefix)) {
+		if (e.key && e.key.startsWith(window.__storage_prefix__ || '')) {
 			let newValue: StorageValue = e.newValue,
 				oldValue: StorageValue = e.oldValue
 
@@ -31,7 +31,7 @@ if (!is_server) {
 				}
 			}
 
-			emit(_local, e.key.slice(prefix.length), newValue, oldValue)
+			emit(_local, e.key.slice((window.__storage_prefix__ || '').length), newValue, oldValue)
 		}
 	})
 }
