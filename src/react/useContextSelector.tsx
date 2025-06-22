@@ -15,7 +15,7 @@ import { unstable_NormalPriority as NormalPriority, unstable_runWithPriority as 
 
 import memo from './memo'
 
-import type { ComponentType, MutableRefObject, ReactNode } from 'react'
+import type { ComponentType, ReactNode, RefObject } from 'react'
 
 const CONTEXT_VALUE = Symbol()
 const ORIGINAL_PROVIDER = Symbol()
@@ -29,8 +29,8 @@ type Listener<Value> = (action: { n: Version; p?: Promise<Value>; v?: Value }) =
 
 type ContextValue<Value> = {
 	[CONTEXT_VALUE]: {
-		v: MutableRefObject<Value>
-		n: MutableRefObject<Version>
+		v: RefObject<Value>
+		n: RefObject<Version>
 		l: Set<Listener<Value>>
 		u: (thunk: () => void, options?: { suspense: boolean }) => void
 	}
