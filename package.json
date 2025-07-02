@@ -69,10 +69,10 @@
 	},
 	"dependencies": {
 		"@swc/helpers": "^0.5.17",
-		"ahooks": "^3.8.5",
+		"ahooks": "^3.9.0",
 		"classix": "^2.2.2",
 		"fast-equals": "^5.2.2",
-		"es-toolkit": "^1.39.4",
+		"es-toolkit": "^1.39.5",
 		"mobx": "^6.13.7",
 		"react": "0.0.0-experimental-06e89951-20250620",
 		"react-dom": "0.0.0-experimental-06e89951-20250620",
@@ -80,9 +80,9 @@
 		"scheduler": "^0.26.0"
 	},
 	"devDependencies": {
-		"@rslib/core": "^0.10.2",
+		"@rslib/core": "^0.10.4",
 		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^24.0.3",
+		"@types/node": "^24.0.10",
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
 		"@types/scheduler": "^0.26.0",
