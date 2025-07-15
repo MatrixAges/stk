@@ -3,6 +3,7 @@ interface Options {
 }
 type KeyMap = Record<string, string | ((v: any) => any) | Handlers> | string;
 interface Handlers {
+    local_key?: string;
     fromStorage: (v: any) => any;
     toStorage: (v: any) => any;
 }

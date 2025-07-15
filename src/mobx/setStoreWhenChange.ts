@@ -17,6 +17,7 @@ interface Options extends StoreOptions {
 type KeyMap = Record<string, string | ((v: any) => any) | Handlers> | string
 
 interface Handlers {
+	local_key?: string
 	fromStorage: (v: any) => any
 	toStorage: (v: any) => any
 }
@@ -33,12 +34,12 @@ const getKeyValue = (key_map: KeyMap, namespace?: string) => {
 			return { local_key: key, proxy_key: key, getHandler: value }
 		}
 
-		if (typeof value === 'object' && value) {
+		if (value && typeof value === 'object') {
 			return {
-				local_key: key,
+				local_key: value.local_key || key,
 				proxy_key: key,
-				fromStorage: (value as Handlers).fromStorage,
-				toStorage: (value as Handlers).toStorage
+				fromStorage: value.fromStorage,
+				toStorage: value.toStorage
 			}
 		}
 
