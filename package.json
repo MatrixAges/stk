@@ -74,8 +74,8 @@
 		"fast-equals": "^5.2.2",
 		"es-toolkit": "^1.39.7",
 		"mobx": "^6.13.7",
-		"react": "0.0.0-experimental-06e89951-20250620",
-		"react-dom": "0.0.0-experimental-06e89951-20250620",
+		"react": "catalog:",
+		"react-dom": "catalog:",
 		"rfdc": "^1.4.1",
 		"scheduler": "^0.26.0"
 	},
