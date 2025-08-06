@@ -1,4 +1,4 @@
-import type { Watch } from '@/mobx';
+import type { Watch } from '../mobx';
 import type { IReactionDisposer, Lambda } from 'mobx';
 type MaybePromise<T> = T | Promise<T>;
 interface Config<T = {}> {
